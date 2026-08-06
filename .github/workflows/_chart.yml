@@ -1,0 +1,32 @@
+on:
+  workflow_call:
+
+jobs:
+  helm_build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - uses: Azure/setup-helm@v5
+
+    - run: |
+        helm dependencies update chart
+        helm package chart -d /tmp/
+
+    - if: github.ref_type == 'tag'
+      uses: docker/metadata-action@v5
+      with:
+        images: ghcr.io/${{ github.repository }}
+        tags: |
+          type=raw,value=latest
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=semver,pattern={{major}}
+
+    - if: github.ref_type == 'tag'
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.repository_owner }} --password-stdin
+        helm push /tmp/chart*.tgz oci://ghcr.io/${REPO@L}/charts
+        env:
+          REPO: ${{ github.repository_owner }}

@@ -32,3 +32,9 @@ jobs:
     needs:
     - lint
     - test
+
+  chart_build:
+    uses: ./.github/workflows/_chart.yml
+    needs:
+    - lint
+    - test

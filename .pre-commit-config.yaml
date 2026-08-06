@@ -5,6 +5,7 @@ repos:
       - id: check-added-large-files
       - id: check-json
       - id: check-yaml
+        exclude: chart/templates/[A-Za-z\-/]+.yaml
       - id: check-merge-conflict
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -13,3 +14,11 @@ repos:
     rev: v8.30.1
     hooks:
       - id: gitleaks
+
+  - repo: https://github.com/losisin/helm-values-schema-json
+    rev: v2.5.0
+    hooks:
+      - id: helm-schema
+        args: ["--config", "chart/.schema.yaml"]
+      - id: helm-schema
+        args: ["lint", "--strict", "--config", "chart/.schema.yaml"]
