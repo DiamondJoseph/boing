@@ -1,0 +1,14 @@
+on:
+  workflow_call:
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: renovatebot/github-action@v46
+        with:
+          configurationFile: .github/renovate.json
+          # https://docs.renovatebot.com/modules/platform/github/#running-using-a-fine-grained-token
+          token: ${{ secrets.RENOVATE_TOKEN }}

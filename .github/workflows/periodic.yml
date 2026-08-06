@@ -1,0 +1,7 @@
+on:
+  schedule:
+    - cron: '28 0 * * 6'
+
+jobs:
+  update_dependencies:
+    uses: ./.github/workflows/_update.yml
