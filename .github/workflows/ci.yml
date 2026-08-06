@@ -26,3 +26,9 @@ jobs:
     uses: ./.github/workflows/_test.yml
     with:
       java_version: ${{ matrix.java_version }}
+
+  container_build:
+    uses: ./.github/workflows/_container.yml
+    needs:
+    - lint
+    - test
