@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "25",
+			"installMaven": true
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker": {
+			"moby": false
+		},
+		"ghcr.io/prulloac/devcontainer-features/pre-commit:1.0.3": {}
+	},
+	"postCreateCommand": "helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false && pre-commit install --install-hooks"
+}
