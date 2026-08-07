@@ -1,0 +1,31 @@
+on:
+  workflow_call:
+    inputs:
+      java_version:
+        type: string
+        # Current LTS release
+        default: "25"
+      java_distribution:
+        type: string
+        default: "temurin"
+
+jobs:
+  maven_deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v5
+        with:
+          java-version: ${{ inputs.java_version }}
+          distribution: ${{ inputs.java_distribution }}
+          cache: 'maven'
+
+      - run: mvn deploy -DskipTests -Dspotless.check.skip=true --batch-mode
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

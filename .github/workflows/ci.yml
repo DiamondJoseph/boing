@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - created
+  pull_request:
+
+jobs:
+
+  lint:
+    strategy:
+      matrix:
+        # Current LTS release + non-LTS releases since
+        java_version: ["25", "26"]
+    uses: ./.github/workflows/_lint.yml
+    with:
+      java_version: ${{ matrix.java_version }}
+
+  test:
+    strategy:
+      matrix:
+        # Current LTS release + non-LTS releases since
+        java_version: ["25", "26"]
+    uses: ./.github/workflows/_test.yml
+    with:
+      java_version: ${{ matrix.java_version }}

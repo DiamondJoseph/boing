@@ -1,0 +1,17 @@
+on:
+  release:
+    types:
+    - created
+
+jobs:
+  lint:
+    uses: ./.github/workflows/_lint.yml
+
+  test:
+    uses: ./.github/workflows/_test.yml
+
+  publish_jar:
+    uses: ./.github/workflows/_jar.yml
+    needs:
+    - lint
+    - test
