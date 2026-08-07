@@ -1,0 +1,13 @@
+values:
+  - chart/values.yaml
+
+output: chart/values.schema.json
+
+# Include comments for the helm-docs plugin into the schema, to allow e.g. documentation in VSCode
+useHelmDocs: true
+
+k8sSchemaVersion: v1.36.3
+
+schemaRoot:
+  title: Boing Helm chart schema
+  additionalProperties: false
