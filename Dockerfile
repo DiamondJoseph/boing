@@ -9,4 +9,4 @@ FROM eclipse-temurin:25-jre
 USER 1000:1000
 COPY --from=build --chown=1000:1000 --chmod=+rwX /app/target/*.jar /app.jar
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/app.jar","--version"]
