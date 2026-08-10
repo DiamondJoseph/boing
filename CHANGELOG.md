@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/DiamondJoseph/boing/compare/v1.0.0...v1.0.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* **ci:** fix helm publish ([ff96c16](https://github.com/DiamondJoseph/boing/commit/ff96c167794db0bbf531b091e1ce1903b39ba1c0))
+
 ## 1.0.0 (2026-08-10)
 
 
