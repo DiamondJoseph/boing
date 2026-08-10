@@ -2,9 +2,6 @@ on:
   push:
     branches:
       - main
-  release:
-    types:
-      - created
   pull_request:
 
 jobs:
@@ -26,6 +23,12 @@ jobs:
     uses: ./.github/workflows/_test.yml
     with:
       java_version: ${{ matrix.java_version }}
+
+  jar_build:
+    uses: ./.github/workflows/_jar.yml
+    needs:
+    - lint
+    - test
 
   container_build:
     uses: ./.github/workflows/_container.yml

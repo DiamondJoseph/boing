@@ -1,5 +1,9 @@
 on:
   workflow_call:
+    inputs:
+      publish:
+        type: boolean
+        default: false
 
 jobs:
   build_container:
@@ -25,7 +29,6 @@ jobs:
     - run: docker run --rm tag_for_testing
 
     - id: meta
-      if: github.ref_type == 'tag'
       uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v5
       with:
         images: ghcr.io/${{ github.repository }}
@@ -35,8 +38,8 @@ jobs:
           type=semver,pattern={{major}}.{{minor}}
           type=semver,pattern={{major}}
 
-    - uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a  # v7
-      if: github.ref_type == 'tag'
+    - if: inputs.publish
+      uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a  # v7
       with:
         push: true
         tags: ${{ steps.meta.outputs.tags }}

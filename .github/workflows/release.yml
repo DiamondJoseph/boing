@@ -11,13 +11,29 @@ jobs:
     uses: ./.github/workflows/_test.yml
 
   publish_jar:
+    permissions:
+      packages: write
     uses: ./.github/workflows/_jar.yml
     needs:
     - lint
     - test
+    with:
+      publish: true
 
   publish_container:
+    permissions:
+      packages: write
     uses: ./.github/workflows/_container.yml
     needs:
-    - lint
-    - test
+    - publish_jar
+    with:
+      publish: true
+
+  publish_chart:
+    permissions:
+      packages: write
+    uses: ./.github/workflows/_chart.yml
+    needs:
+    - publish_container
+    with:
+      publish: true
