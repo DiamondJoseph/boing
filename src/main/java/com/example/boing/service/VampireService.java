@@ -1,5 +1,6 @@
 package com.example.boing.service;
 
+import com.example.boing.domain.Person;
 import com.example.boing.domain.Resource;
 import com.example.boing.domain.Skill;
 import com.example.boing.domain.Vampire;
@@ -25,5 +26,6 @@ public class VampireService extends GenericService<Vampire> {
     return repository.save(vampire);
   }
 
-  public record VampireUpdate(List<Skill> newSkills, List<Resource> newResources) {}
+  public record VampireUpdate(
+      List<Skill> newSkills, List<Resource> newResources, List<Person> newPeople) {}
 }
