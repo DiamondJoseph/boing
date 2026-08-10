@@ -12,7 +12,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7  # v4
         with:
           # metadata:read; actions:write, contents:write, and pull_requests:write
           # https://github.com/googleapis/release-please-action/issues/818#issuecomment-1889368155

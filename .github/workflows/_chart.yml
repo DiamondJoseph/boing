@@ -6,16 +6,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
 
-    - uses: Azure/setup-helm@v5
+    - uses: Azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310  # v5
 
     - run: |
         helm dependencies update chart
         helm package chart -d /tmp/
 
     - if: github.ref_type == 'tag'
-      uses: docker/metadata-action@v5
+      uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v5
       with:
         images: ghcr.io/${{ github.repository }}
         tags: |
