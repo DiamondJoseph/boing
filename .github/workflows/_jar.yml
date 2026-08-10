@@ -8,14 +8,13 @@ on:
       java_distribution:
         type: string
         default: "temurin"
+      publish:
+        type: boolean
+        default: false
 
 jobs:
-  maven_deploy:
+  maven_build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
@@ -26,6 +25,9 @@ jobs:
           distribution: ${{ inputs.java_distribution }}
           cache: 'maven'
 
-      - run: mvn deploy -DskipTests -Dspotless.check.skip=true --batch-mode
+      - run: mvn install -DskipTests -Dspotless.check.skip=true --batch-mode
+
+      - if: inputs.publish
+        run: mvn deploy --batch-mode
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
