@@ -14,5 +14,12 @@
 		},
 		"ghcr.io/prulloac/devcontainer-features/pre-commit:1.0.3": {}
 	},
+	"mounts": [
+        {
+            "source": "${localEnv:HOME}/.ssh",
+            "target": "/home/vscode/.ssh",
+            "type": "bind"
+        }
+    ],
 	"postCreateCommand": "helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false && pre-commit install --install-hooks"
 }
