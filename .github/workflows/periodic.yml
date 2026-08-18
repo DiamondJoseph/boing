@@ -5,3 +5,4 @@ on:
 jobs:
   update_dependencies:
     uses: ./.github/workflows/_update.yml
+    secrets: inherit
