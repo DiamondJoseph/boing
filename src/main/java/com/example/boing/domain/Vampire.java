@@ -1,5 +1,6 @@
 package com.example.boing.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -10,27 +11,32 @@ import java.util.List;
 public class Vampire {
 
   @Id @GeneratedValue private Long id;
-  private String name;
-  private String intialDescription;
-  @OneToMany private List<Skill> skills;
+  @Column private String name;
+  @Column private String intialDescription;
+  @OneToMany private List<Person> people;
   @OneToMany private List<Resource> resources;
+  @OneToMany private List<Skill> skills;
 
   public Vampire(
       String name,
       String intialDescription,
-      List<Character> characters,
+      List<Person> people,
       List<Skill> skills,
       List<Resource> resources) {
-    this.name = name;
-    this.intialDescription = intialDescription;
     if (skills.size() != 3) {
       throw new IllegalArgumentException("Vampire should start with 3 skills");
     }
-    this.skills = skills;
     if (resources.size() != 3) {
       throw new IllegalArgumentException("Vampire should start with 3 resources");
     }
+    if (people.size() < 3) {
+      throw new IllegalArgumentException("Vampire should start with at least 3 people");
+    }
+    this.name = name;
+    this.intialDescription = intialDescription;
+    this.skills = skills;
     this.resources = resources;
+    this.people = people;
   }
 
   @SuppressWarnings("unused")

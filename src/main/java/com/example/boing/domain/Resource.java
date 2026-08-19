@@ -1,6 +1,7 @@
 package com.example.boing.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -10,9 +11,9 @@ import jakarta.persistence.Id;
 public class Resource {
 
   @JsonIgnore @Id @GeneratedValue private Long id;
-  private String name;
-  private boolean stationary;
-  private boolean lost = false;
+  @Column private String name;
+  @Column private boolean stationary;
+  @Column private boolean lost = false;
 
   public Resource(String name, boolean stationary) {
     this.name = name;

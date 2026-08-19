@@ -1,8 +1,10 @@
 package com.example.boing.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,16 +13,16 @@ import java.util.List;
 public class Person {
 
   @Id @GeneratedValue private Long id;
-  private String name;
-  private int initialPrompt;
-  private List<String> descriptions = new ArrayList<>();
-  private boolean immortal;
-  private boolean dead = false;
+  @Column private String name;
+  @Column private int initialPrompt;
+  @OneToMany private List<Experience> experiences = new ArrayList<>();
+  @Column private boolean immortal;
+  @Column private boolean dead = false;
 
   public Person(String name, int initialPrompt, String initialDescription, boolean immortal) {
     this.name = name;
     this.initialPrompt = initialPrompt;
-    this.descriptions.add(initialDescription);
+    this.experiences.add(new Experience(initialDescription));
     this.immortal = immortal;
   }
 
@@ -37,12 +39,12 @@ public class Person {
     return initialPrompt;
   }
 
-  public List<String> getDescriptions() {
-    return descriptions;
+  public List<Experience> getExperiences() {
+    return experiences;
   }
 
-  public void addDescription(String description) {
-    this.descriptions.add(description);
+  public void addExperience(Experience experience) {
+    this.experiences.add(experience);
   }
 
   public boolean isImmortal() {
