@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Vampire"
+              $ref: "#/components/schemas/NewVampire"
         required: true
       responses:
         "200":
@@ -59,7 +59,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Skill"
+              $ref: "#/components/schemas/NewSkill"
         required: true
       responses:
         "200":
@@ -90,7 +90,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Resource"
+              $ref: "#/components/schemas/NewResource"
         required: true
       responses:
         "200":
@@ -99,11 +99,42 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/Resource"
+  /api/prompt:
+    get:
+      tags:
+      - prompt-controller
+      operationId: getAll_3
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Prompt"
+    post:
+      tags:
+      - prompt-controller
+      operationId: create_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPrompt"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Prompt"
   /api/person:
     get:
       tags:
       - person-controller
-      operationId: getAll_3
+      operationId: getAll_4
       responses:
         "200":
           description: OK
@@ -116,12 +147,12 @@ paths:
     post:
       tags:
       - person-controller
-      operationId: create_3
+      operationId: create_4
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Person"
+              $ref: "#/components/schemas/NewPerson"
         required: true
       responses:
         "200":
@@ -130,55 +161,29 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/Person"
-  /api/vampire/{id}:
+  /api/page:
     get:
       tags:
-      - vampire-controller
-      operationId: getById
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+      - page-controller
+      operationId: getAll_5
       responses:
         "200":
           description: OK
           content:
             '*/*':
               schema:
-                $ref: "#/components/schemas/Vampire"
-    delete:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Page"
+    post:
       tags:
-      - vampire-controller
-      operationId: delete
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: OK
-    patch:
-      tags:
-      - vampire-controller
-      operationId: update
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+      - page-controller
+      operationId: create_5
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/VampireUpdate"
+              $ref: "#/components/schemas/NewPage"
         required: true
       responses:
         "200":
@@ -186,12 +191,198 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: "#/components/schemas/Vampire"
+                $ref: "#/components/schemas/Page"
+  /api/memory:
+    get:
+      tags:
+      - memory-controller
+      operationId: getAll_6
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Memory"
+    post:
+      tags:
+      - memory-controller
+      operationId: create_6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMemory"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Memory"
+  /api/game:
+    get:
+      tags:
+      - game-controller
+      operationId: getAll_7
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Game"
+    post:
+      tags:
+      - game-controller
+      operationId: create_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewGame"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Game"
+  /api/experience:
+    get:
+      tags:
+      - experience-controller
+      operationId: getAll_8
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Experience"
+    post:
+      tags:
+      - experience-controller
+      operationId: create_8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewExperience"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Experience"
+  /api/diary:
+    get:
+      tags:
+      - diary-controller
+      operationId: getAll_9
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Diary"
+    post:
+      tags:
+      - diary-controller
+      operationId: create_9
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewDiary"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Diary"
+  /api/description:
+    get:
+      tags:
+      - description-controller
+      operationId: getAll_10
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Description"
+    post:
+      tags:
+      - description-controller
+      operationId: create_10
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewDescription"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Description"
+  /api/book:
+    get:
+      tags:
+      - book-controller
+      operationId: getAll_11
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+    post:
+      tags:
+      - book-controller
+      operationId: create_11
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewBook"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Book"
   /api/skill/{id}:
     get:
       tags:
       - skill-controller
-      operationId: getById_1
+      operationId: getById
       parameters:
       - name: id
         in: path
@@ -209,7 +400,7 @@ paths:
     delete:
       tags:
       - skill-controller
-      operationId: delete_1
+      operationId: delete
       parameters:
       - name: id
         in: path
@@ -223,7 +414,7 @@ paths:
     patch:
       tags:
       - skill-controller
-      operationId: update_1
+      operationId: update
       parameters:
       - name: id
         in: path
@@ -248,7 +439,7 @@ paths:
     get:
       tags:
       - resource-controller
-      operationId: getById_2
+      operationId: getById_1
       parameters:
       - name: id
         in: path
@@ -266,7 +457,7 @@ paths:
     delete:
       tags:
       - resource-controller
-      operationId: delete_2
+      operationId: delete_1
       parameters:
       - name: id
         in: path
@@ -280,7 +471,7 @@ paths:
     patch:
       tags:
       - resource-controller
-      operationId: update_2
+      operationId: update_1
       parameters:
       - name: id
         in: path
@@ -305,7 +496,7 @@ paths:
     get:
       tags:
       - person-controller
-      operationId: getById_3
+      operationId: getById_2
       parameters:
       - name: id
         in: path
@@ -323,7 +514,7 @@ paths:
     delete:
       tags:
       - person-controller
-      operationId: delete_3
+      operationId: delete_2
       parameters:
       - name: id
         in: path
@@ -337,7 +528,7 @@ paths:
     patch:
       tags:
       - person-controller
-      operationId: update_3
+      operationId: update_2
       parameters:
       - name: id
         in: path
@@ -358,33 +549,621 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/Person"
+  /api/game/{id}:
+    get:
+      tags:
+      - game-controller
+      operationId: getById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Game"
+    delete:
+      tags:
+      - game-controller
+      operationId: delete_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - game-controller
+      operationId: update_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GameUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Game"
+  /api/diary/{id}:
+    get:
+      tags:
+      - diary-controller
+      operationId: getById_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Diary"
+    delete:
+      tags:
+      - diary-controller
+      operationId: delete_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - diary-controller
+      operationId: update_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DiaryUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Diary"
+  /api/vampire/{id}:
+    get:
+      tags:
+      - vampire-controller
+      operationId: getById_5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Vampire"
+    delete:
+      tags:
+      - vampire-controller
+      operationId: delete_5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/prompt/{id}:
+    get:
+      tags:
+      - prompt-controller
+      operationId: getById_6
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Prompt"
+    delete:
+      tags:
+      - prompt-controller
+      operationId: delete_6
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/page/{id}:
+    get:
+      tags:
+      - page-controller
+      operationId: getById_7
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Page"
+    delete:
+      tags:
+      - page-controller
+      operationId: delete_7
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/memory/{id}:
+    get:
+      tags:
+      - memory-controller
+      operationId: getById_8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Memory"
+    delete:
+      tags:
+      - memory-controller
+      operationId: delete_8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/experience/{id}:
+    get:
+      tags:
+      - experience-controller
+      operationId: getById_9
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Experience"
+    delete:
+      tags:
+      - experience-controller
+      operationId: delete_9
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/dice:
+    get:
+      tags:
+      - dice-controller
+      operationId: first
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /api/dice/{current}:
+    get:
+      tags:
+      - dice-controller
+      operationId: next
+      parameters:
+      - name: current
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /api/description/{id}:
+    get:
+      tags:
+      - description-controller
+      operationId: getById_10
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Description"
+    delete:
+      tags:
+      - description-controller
+      operationId: delete_10
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/book/{id}:
+    get:
+      tags:
+      - book-controller
+      operationId: getById_11
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Book"
+    delete:
+      tags:
+      - book-controller
+      operationId: delete_11
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
 components:
   schemas:
-    Resource:
+    NewVampire:
       type: object
       properties:
         name:
           type: string
-        stationary:
-          type: boolean
-        lost:
-          type: boolean
+        initialDescription:
+          type: string
+      required:
+      - initialDescription
+      - name
+    Vampire:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        intialDescription:
+          type: string
+    NewSkill:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+      - name
     Skill:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
         name:
           type: string
         checked:
           type: boolean
         lost:
           type: boolean
-    Vampire:
+    NewResource:
       type: object
       properties:
         name:
           type: string
-        intialDescription:
+        stationary:
+          type: boolean
+      required:
+      - name
+      - stationary
+    Resource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
           type: string
+        stationary:
+          type: boolean
+        lost:
+          type: boolean
+    NewPrompt:
+      type: object
+      properties:
+        promptText:
+          type: string
+      required:
+      - promptText
+    Prompt:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        text:
+          type: string
+    NewDescription:
+      type: object
+      properties:
+        description:
+          type: string
+      required:
+      - description
+    NewPerson:
+      type: object
+      properties:
+        name:
+          type: string
+        initialDescription:
+          $ref: "#/components/schemas/NewDescription"
+        dead:
+          type: boolean
+        immortal:
+          type: boolean
+      required:
+      - initialDescription
+      - name
+    Description:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        text:
+          type: string
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        dead:
+          type: boolean
+        immortal:
+          type: boolean
+        descriptions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Description"
+    NewPage:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        promptTexts:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewPrompt"
+      required:
+      - page
+      - promptTexts
+    Page:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        prompts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Prompt"
+    NewExperience:
+      type: object
+      properties:
+        promptId:
+          type: integer
+          format: int64
+        response:
+          type: string
+      required:
+      - promptId
+      - response
+    NewMemory:
+      type: object
+      properties:
+        initialExperience:
+          $ref: "#/components/schemas/NewExperience"
+      required:
+      - initialExperience
+    Experience:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        prompt:
+          $ref: "#/components/schemas/Prompt"
+        response:
+          type: string
+    Memory:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        remembered:
+          type: boolean
+        experiences:
+          type: array
+          items:
+            $ref: "#/components/schemas/Experience"
+    NewGame:
+      type: object
+      properties:
+        vampire:
+          $ref: "#/components/schemas/NewVampire"
+        people:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewPerson"
+        resources:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewResource"
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewSkill"
+      required:
+      - people
+      - resources
+      - skills
+      - vampire
+    Diary:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        lost:
+          type: boolean
+        memories:
+          type: array
+          items:
+            $ref: "#/components/schemas/Memory"
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        vampire:
+          $ref: "#/components/schemas/Vampire"
+        people:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
         resources:
           type: array
           items:
@@ -393,38 +1172,46 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Skill"
-    Experience: {}
-    Person:
+        memories:
+          type: array
+          items:
+            $ref: "#/components/schemas/Memory"
+        diaries:
+          type: array
+          items:
+            $ref: "#/components/schemas/Diary"
+    NewDiary:
       type: object
       properties:
-        name:
+        description:
           type: string
-        initialPrompt:
-          type: integer
-          format: int32
-        experiences:
+        initialMemories:
           type: array
           items:
-            $ref: "#/components/schemas/Experience"
-        immortal:
-          type: boolean
-        dead:
-          type: boolean
-    VampireUpdate:
+            type: integer
+            format: int64
+      required:
+      - description
+      - initialMemories
+    NewBook:
       type: object
       properties:
-        newSkills:
+        pages:
           type: array
           items:
-            $ref: "#/components/schemas/Skill"
-        newResources:
+            $ref: "#/components/schemas/NewPage"
+      required:
+      - pages
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        pages:
           type: array
           items:
-            $ref: "#/components/schemas/Resource"
-        newPeople:
-          type: array
-          items:
-            $ref: "#/components/schemas/Person"
+            $ref: "#/components/schemas/Page"
     SkillUpdate:
       type: object
       properties:
@@ -437,12 +1224,90 @@ components:
       properties:
         lost:
           type: boolean
+      required:
+      - lost
     PersonUpdate:
       type: object
       properties:
-        newExperience:
-          $ref: "#/components/schemas/Experience"
-        immortal:
-          type: boolean
+        newDescription:
+          $ref: "#/components/schemas/NewDescription"
         dead:
           type: boolean
+        immortal:
+          type: boolean
+      required:
+      - newDescription
+    AttachedIdPersonUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        update:
+          $ref: "#/components/schemas/PersonUpdate"
+      required:
+      - id
+      - update
+    AttachedIdResourceUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        update:
+          $ref: "#/components/schemas/ResourceUpdate"
+      required:
+      - id
+      - update
+    AttachedIdSkillUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        update:
+          $ref: "#/components/schemas/SkillUpdate"
+      required:
+      - id
+      - update
+    GameUpdate:
+      type: object
+      properties:
+        newExperience:
+          $ref: "#/components/schemas/NewExperience"
+        newPeople:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewPerson"
+        peopleUpdates:
+          type: array
+          items:
+            $ref: "#/components/schemas/AttachedIdPersonUpdate"
+        newResources:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewResource"
+        resourceUpdates:
+          type: array
+          items:
+            $ref: "#/components/schemas/AttachedIdResourceUpdate"
+        newSkills:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewSkill"
+        skillUpdates:
+          type: array
+          items:
+            $ref: "#/components/schemas/AttachedIdSkillUpdate"
+      required:
+      - newExperience
+    DiaryUpdate:
+      type: object
+      properties:
+        lost:
+          type: boolean
+        addedMemories:
+          type: array
+          items:
+            type: integer
+            format: int64

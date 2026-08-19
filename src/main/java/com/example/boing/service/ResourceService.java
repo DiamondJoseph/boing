@@ -1,21 +1,28 @@
 package com.example.boing.service;
 
 import com.example.boing.domain.Resource;
-import org.springframework.http.HttpStatus;
+import com.example.boing.service.generic.MutableService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class ResourceService extends GenericService<Resource> {
+public class ResourceService
+    extends MutableService<Resource, ResourceService.NewResource, ResourceService.ResourceUpdate> {
 
-  public Resource update(Long id, ResourceUpdate partial) {
-    var resource =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    resource.setLost(partial.lost());
-    return repository.save(resource);
+  @Override
+  public Resource create(NewResource resource) {
+    return new Resource(resource.name, resource.stationary);
   }
 
-  public record ResourceUpdate(boolean lost) {}
+  @Override
+  public Resource update(Resource resource, ResourceUpdate partial) {
+    resource.setLost(partial.lost);
+    return resource;
+  }
+
+  public record NewResource(
+      @JsonProperty(required = true) String name,
+      @JsonProperty(required = true) boolean stationary) {}
+
+  public record ResourceUpdate(@JsonProperty(required = true) boolean lost) {}
 }

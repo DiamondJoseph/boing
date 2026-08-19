@@ -1,16 +1,13 @@
 package com.example.boing.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.boing.domain.generic.Persistable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
 /** Resource are assets or structures that are useful. */
 @Entity
-public class Resource {
+public class Resource extends Persistable {
 
-  @JsonIgnore @Id @GeneratedValue private Long id;
   @Column private String name;
   @Column private boolean stationary;
   @Column private boolean lost = false;
@@ -21,9 +18,7 @@ public class Resource {
   }
 
   @SuppressWarnings("unused")
-  private Resource() {
-    // Default constructor for DB deserilisation
-  }
+  private Resource() {}
 
   public String getName() {
     return name;

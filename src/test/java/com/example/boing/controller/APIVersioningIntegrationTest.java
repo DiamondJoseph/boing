@@ -1,4 +1,4 @@
-package com.example.boing;
+package com.example.boing.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 class APIVersioningIntegrationTest {
 
-  private static final String EXPECTED_HASH = "dcc3d0807a28cbf9137922d4aecfc5a9";
+  private static final String EXPECTED_HASH = "8b23fbc7540cd4b1d542c446950a09b0";
 
   @Test
   void testApiVersion() throws IOException, NoSuchAlgorithmException {

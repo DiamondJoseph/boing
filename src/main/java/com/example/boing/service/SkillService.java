@@ -1,22 +1,31 @@
 package com.example.boing.service;
 
 import com.example.boing.domain.Skill;
-import org.springframework.http.HttpStatus;
+import com.example.boing.service.generic.MutableService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class SkillService extends GenericService<Skill> {
+public class SkillService
+    extends MutableService<Skill, SkillService.NewSkill, SkillService.SkillUpdate> {
 
-  public Skill update(Long id, SkillUpdate partial) {
-    var skill =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    skill.setChecked(partial.checked());
-    skill.setLost(partial.lost());
-    return repository.save(skill);
+  @Override
+  public Skill create(NewSkill skill) {
+    return new Skill(skill.name);
   }
 
-  public record SkillUpdate(boolean checked, boolean lost) {}
+  @Override
+  public Skill update(Skill skill, SkillUpdate partial) {
+    if (partial.checked != null) {
+      skill.setChecked(partial.checked);
+    }
+    if (partial.lost != null) {
+      skill.setLost(partial.lost);
+    }
+    return skill;
+  }
+
+  public record NewSkill(@JsonProperty(required = true) String name) {}
+
+  public record SkillUpdate(@JsonProperty Boolean checked, @JsonProperty Boolean lost) {}
 }
