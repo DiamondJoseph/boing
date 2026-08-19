@@ -1,5 +1,6 @@
 package com.example.boing.service;
 
+import com.example.boing.domain.Experience;
 import com.example.boing.domain.Person;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,11 @@ public class PersonService extends GenericService<Person> {
         repository
             .findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    person.addDescription(partial.newDescription());
+    person.addExperience(partial.newExperience());
     person.setImmortal(partial.immortal());
     person.setDead(partial.dead());
     return repository.save(person);
   }
 
-  public record PersonUpdate(String newDescription, boolean immortal, boolean dead) {}
+  public record PersonUpdate(Experience newExperience, boolean immortal, boolean dead) {}
 }
