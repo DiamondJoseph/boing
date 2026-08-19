@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-abstract class GenericController<S extends GenericService<D>, D> {
+abstract class GenericController<S extends GenericService<T>, T> {
 
   @Autowired protected S service;
 
   @PostMapping
-  public ResponseEntity<D> create(@RequestBody D resource) {
+  public ResponseEntity<T> create(@RequestBody T resource) {
     return new ResponseEntity<>(service.save(resource), HttpStatus.CREATED);
   }
 
   @GetMapping
-  public ResponseEntity<List<D>> getAll() {
+  public ResponseEntity<List<T>> getAll() {
     return ResponseEntity.ok(service.getAll());
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Optional<D>> getById(@PathVariable Long id) {
+  public ResponseEntity<Optional<T>> getById(@PathVariable Long id) {
     return ResponseEntity.ok(service.getById(id));
   }
 
