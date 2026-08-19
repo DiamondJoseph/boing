@@ -1,0 +1,448 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /api/vampire:
+    get:
+      tags:
+      - vampire-controller
+      operationId: getAll
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Vampire"
+    post:
+      tags:
+      - vampire-controller
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Vampire"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Vampire"
+  /api/skill:
+    get:
+      tags:
+      - skill-controller
+      operationId: getAll_1
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Skill"
+    post:
+      tags:
+      - skill-controller
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Skill"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Skill"
+  /api/resource:
+    get:
+      tags:
+      - resource-controller
+      operationId: getAll_2
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Resource"
+    post:
+      tags:
+      - resource-controller
+      operationId: create_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Resource"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Resource"
+  /api/person:
+    get:
+      tags:
+      - person-controller
+      operationId: getAll_3
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Person"
+    post:
+      tags:
+      - person-controller
+      operationId: create_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Person"
+  /api/vampire/{id}:
+    get:
+      tags:
+      - vampire-controller
+      operationId: getById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Vampire"
+    delete:
+      tags:
+      - vampire-controller
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - vampire-controller
+      operationId: update
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VampireUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Vampire"
+  /api/skill/{id}:
+    get:
+      tags:
+      - skill-controller
+      operationId: getById_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Skill"
+    delete:
+      tags:
+      - skill-controller
+      operationId: delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - skill-controller
+      operationId: update_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Skill"
+  /api/resource/{id}:
+    get:
+      tags:
+      - resource-controller
+      operationId: getById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Resource"
+    delete:
+      tags:
+      - resource-controller
+      operationId: delete_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - resource-controller
+      operationId: update_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Resource"
+  /api/person/{id}:
+    get:
+      tags:
+      - person-controller
+      operationId: getById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Person"
+    delete:
+      tags:
+      - person-controller
+      operationId: delete_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - person-controller
+      operationId: update_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PersonUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Person"
+components:
+  schemas:
+    Resource:
+      type: object
+      properties:
+        name:
+          type: string
+        stationary:
+          type: boolean
+        lost:
+          type: boolean
+    Skill:
+      type: object
+      properties:
+        name:
+          type: string
+        checked:
+          type: boolean
+        lost:
+          type: boolean
+    Vampire:
+      type: object
+      properties:
+        name:
+          type: string
+        intialDescription:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+    Experience: {}
+    Person:
+      type: object
+      properties:
+        name:
+          type: string
+        initialPrompt:
+          type: integer
+          format: int32
+        experiences:
+          type: array
+          items:
+            $ref: "#/components/schemas/Experience"
+        immortal:
+          type: boolean
+        dead:
+          type: boolean
+    VampireUpdate:
+      type: object
+      properties:
+        newSkills:
+          type: array
+          items:
+            $ref: "#/components/schemas/Skill"
+        newResources:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+        newPeople:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+    SkillUpdate:
+      type: object
+      properties:
+        checked:
+          type: boolean
+        lost:
+          type: boolean
+    ResourceUpdate:
+      type: object
+      properties:
+        lost:
+          type: boolean
+    PersonUpdate:
+      type: object
+      properties:
+        newExperience:
+          $ref: "#/components/schemas/Experience"
+        immortal:
+          type: boolean
+        dead:
+          type: boolean

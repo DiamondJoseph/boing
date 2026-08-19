@@ -65,6 +65,13 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>33.6.0-jre</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -75,6 +82,8 @@
         <executions>
           <execution>
             <goals>
+              <goal>start</goal>
+              <goal>stop</goal>
               <goal>build-info</goal>
             </goals>
           </execution>
@@ -110,6 +119,43 @@
             <phase>compile</phase>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-maven-plugin</artifactId>
+        <configuration>
+          <apiDocsUrl>http://localhost:8080/v3/api-docs.yaml</apiDocsUrl>
+          <failOnError>true</failOnError>
+          <outputFileName>openapi.yaml</outputFileName>
+          <outputDir>${project.basedir}</outputDir>
+        </configuration>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/*IntegrationTest</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>**/*IntegrationTest</include>
+          </includes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
