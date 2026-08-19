@@ -1,6 +1,7 @@
-package com.example.boing.controller;
+package com.example.boing.controller.generic;
 
-import com.example.boing.service.GenericService;
+import com.example.boing.domain.generic.Persistable;
+import com.example.boing.service.generic.ImmutableService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-abstract class GenericController<S extends GenericService<T>, T> {
+public abstract class ImmutableController<
+    S extends ImmutableService<T, TNew>, T extends Persistable, TNew> {
 
-  @Autowired protected S service;
+  @Autowired S service;
 
   @PostMapping
-  public ResponseEntity<T> create(@RequestBody T resource) {
-    return new ResponseEntity<>(service.save(resource), HttpStatus.CREATED);
+  public ResponseEntity<T> create(@RequestBody TNew resource) {
+    return new ResponseEntity<>(service.createAndSave(resource), HttpStatus.CREATED);
   }
 
   @GetMapping

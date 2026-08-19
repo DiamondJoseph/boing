@@ -1,23 +1,30 @@
 package com.example.boing.domain;
 
+import com.example.boing.domain.generic.Persistable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
-/** Experience are what you do with - or to - other people. */
+/** Experience are how you have responded to prompts. */
 @Entity
-public class Experience {
+public class Experience extends Persistable {
 
-  @Id @GeneratedValue private Long id;
-  @Column private String description;
+  @ManyToOne private Prompt prompt;
+  @Column private String response;
 
-  public Experience(String description) {
-    this.description = description;
+  public Experience(Prompt prompt, String response) {
+    this.prompt = prompt;
+    this.response = response;
   }
 
   @SuppressWarnings("unused")
-  private Experience() {
-    // Default constructor for DB deserilisation
+  private Experience() {}
+
+  public Prompt getPrompt() {
+    return prompt;
+  }
+
+  public String getResponse() {
+    return response;
   }
 }

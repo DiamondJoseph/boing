@@ -1,31 +1,19 @@
 package com.example.boing.service;
 
-import com.example.boing.domain.Person;
-import com.example.boing.domain.Resource;
-import com.example.boing.domain.Skill;
 import com.example.boing.domain.Vampire;
-import java.util.List;
-import org.springframework.http.HttpStatus;
+import com.example.boing.service.generic.ImmutableService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class VampireService extends GenericService<Vampire> {
+public class VampireService extends ImmutableService<Vampire, VampireService.NewVampire> {
 
-  public Vampire update(Long id, VampireUpdate partial) {
-    var vampire =
-        repository
-            .findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    for (var skill : partial.newSkills()) {
-      vampire.addSkill(skill);
-    }
-    for (var resource : partial.newResources()) {
-      vampire.addResource(resource);
-    }
-    return repository.save(vampire);
+  @Override
+  public Vampire create(NewVampire vampire) {
+    return new Vampire(vampire.name, vampire.initialDescription);
   }
 
-  public record VampireUpdate(
-      List<Skill> newSkills, List<Resource> newResources, List<Person> newPeople) {}
+  public record NewVampire(
+      @JsonProperty(required = true) String name,
+      @JsonProperty(required = true) String initialDescription) {}
 }

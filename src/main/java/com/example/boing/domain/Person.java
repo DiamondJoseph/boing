@@ -1,50 +1,42 @@
 package com.example.boing.domain;
 
+import com.example.boing.domain.generic.Persistable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Character are the people with whom your vampire has a relationship. */
+/** People with whom your vampire has a relationship. */
 @Entity
-public class Person {
+public class Person extends Persistable {
 
-  @Id @GeneratedValue private Long id;
   @Column private String name;
-  @Column private int initialPrompt;
-  @OneToMany private List<Experience> experiences = new ArrayList<>();
+  @Column private boolean dead;
   @Column private boolean immortal;
-  @Column private boolean dead = false;
+  @OneToMany private List<Description> descriptions;
 
-  public Person(String name, int initialPrompt, String initialDescription, boolean immortal) {
+  public Person(String name, Description initialDescription, boolean dead, boolean immortal) {
     this.name = name;
-    this.initialPrompt = initialPrompt;
-    this.experiences.add(new Experience(initialDescription));
+    this.dead = dead;
     this.immortal = immortal;
+    this.descriptions = new ArrayList<>();
+    descriptions.add(initialDescription);
   }
 
   @SuppressWarnings("unused")
-  private Person() {
-    // Default constructor for DB deserilisation
-  }
+  private Person() {}
 
   public String getName() {
     return name;
   }
 
-  public int getInitialPrompt() {
-    return initialPrompt;
+  public List<Description> getDescriptions() {
+    return descriptions;
   }
 
-  public List<Experience> getExperiences() {
-    return experiences;
-  }
-
-  public void addExperience(Experience experience) {
-    this.experiences.add(experience);
+  public void addDescription(Description description) {
+    this.descriptions.add(description);
   }
 
   public boolean isImmortal() {

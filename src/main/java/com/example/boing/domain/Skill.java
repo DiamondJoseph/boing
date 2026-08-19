@@ -1,16 +1,13 @@
 package com.example.boing.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.boing.domain.generic.Persistable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
 /** Skills describe the capabilities and characteristics of your vampire. */
 @Entity
-public class Skill {
+public class Skill extends Persistable {
 
-  @JsonIgnore @Id @GeneratedValue private Long id;
   @Column private String name;
   @Column private boolean checked = false;
   @Column private boolean lost = false;
@@ -20,9 +17,7 @@ public class Skill {
   }
 
   @SuppressWarnings("unused")
-  private Skill() {
-    // Default constructor for DB deserilisation
-  }
+  private Skill() {}
 
   public String getName() {
     return name;
@@ -32,8 +27,8 @@ public class Skill {
     return checked;
   }
 
-  public void setChecked(boolean lost) {
-    this.lost = lost;
+  public void setChecked(boolean checked) {
+    this.checked = checked;
   }
 
   public boolean isLost() {
