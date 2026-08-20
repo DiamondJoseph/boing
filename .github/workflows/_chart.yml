@@ -31,5 +31,5 @@ jobs:
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io --username ${{ github.repository_owner }} --password-stdin
         helm push /tmp/boing*.tgz oci://ghcr.io/${REPO@L}/charts
-        env:
-          REPO: ${{ github.repository_owner }}
+      env:
+        REPO: ${{ github.repository_owner }}
