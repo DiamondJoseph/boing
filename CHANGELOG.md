@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/DiamondJoseph/boing/compare/v1.0.1...v2.0.0) (2026-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* rewrite API
+
+### Features
+
+* rewrite API ([f966901](https://github.com/DiamondJoseph/boing/commit/f9669011c85f7e400e14d3e6cc092aeda732330e))
+
+
+### Bug Fixes
+
+* **ci:** allow token to be passed to perioidic job ([0b52b50](https://github.com/DiamondJoseph/boing/commit/0b52b50cf655d3dc0b5995da1e63d25af7977d9b))
+* **dev:** mount ssh keys to container ([5090550](https://github.com/DiamondJoseph/boing/commit/50905506ecec28180243f7407886ff742788d7df))
+
 ## [1.0.1](https://github.com/DiamondJoseph/boing/compare/v1.0.0...v1.0.1) (2026-08-10)
 
 
