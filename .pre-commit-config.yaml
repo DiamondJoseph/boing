@@ -4,7 +4,11 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-json
-        exclude: .devcontainer/devcontainer.json
+        exclude: |
+            (?x)^(
+                .devcontainer/devcontainer.json|
+                client/tsconfig.json
+            )$
       - id: check-yaml
         exclude: chart/templates/[A-Za-z\-/]+.yaml
       - id: check-merge-conflict

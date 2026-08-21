@@ -56,16 +56,22 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
+          - name: server-config
+            mountPath: "/config"
+            readOnly: true
+          {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          command:
-          - "java"
-          - "-jar"
-          - "/app.jar"
-      {{- with .Values.volumes }}
+          env:
+            SPRING_CONFIG_ADDITIONAL_LOCATION: "/config"
       volumes:
+      - name: server-config
+        projected:
+          sources:
+          - configMap:
+              name: {{ include "blueapi.fullname" . }}-config
+      {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
