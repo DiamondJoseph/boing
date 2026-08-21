@@ -14,18 +14,16 @@ jobs:
 
     - uses: Azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310  # v5
 
-    - run: |
-        helm dependencies update chart
-        helm package chart -d /tmp/
-
-    - uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v5
+    - id: meta
+      uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v5
       with:
         images: ghcr.io/${{ github.repository }}
         tags: |
-          type=raw,value=latest
           type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
+
+    - run: |
+        helm dependencies update chart
+        helm package chart -d /tmp/ --version ${{ steps.meta.outputs.version }} --appVersion ${{ steps.meta.outputs.version }}
 
     - if: inputs.publish
       run: |
