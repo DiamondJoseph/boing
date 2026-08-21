@@ -21,5 +21,12 @@
             "type": "bind"
         }
     ],
-	"postCreateCommand": "helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false && pre-commit install --install-hooks"
+	"postCreateCommand": "helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false && pre-commit install --install-hooks",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"asispts.neo-git-graph"
+			]
+		}
+	}
 }
