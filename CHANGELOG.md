@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.1](https://github.com/DiamondJoseph/boing/compare/v2.0.0...v2.0.1) (2026-08-21)
+
+
+### Bug Fixes
+
+* **ci:** fix helm chart publishing ([8fb6cfe](https://github.com/DiamondJoseph/boing/commit/8fb6cfee1f373b95baf8942a45eaf3458d068e1b))
+* fix chart publishing action ([#18](https://github.com/DiamondJoseph/boing/issues/18)) ([5c59c06](https://github.com/DiamondJoseph/boing/commit/5c59c066cc342665adda797108f1cbd136e4a0a2))
+* prevent needing additional scopes ([b67cf84](https://github.com/DiamondJoseph/boing/commit/b67cf84f113dfa20a96ba3165ccc4166e48e40a2))
+
 ## [2.0.0](https://github.com/DiamondJoseph/boing/compare/v1.0.1...v2.0.0) (2026-08-20)
 
 
