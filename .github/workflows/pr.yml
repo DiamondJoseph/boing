@@ -1,0 +1,7 @@
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  validate_pr_name:
+    uses: ./.github/workflows/_title.yml
