@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.2](https://github.com/DiamondJoseph/boing/compare/v2.0.1...v2.0.2) (2026-08-21)
+
+
+### Documentation
+
+* add documentation and infrastructure ([1758c0f](https://github.com/DiamondJoseph/boing/commit/1758c0ff8500b66c267f41ede5d7aa5aa1e70534))
+* add documentation and infrastructure ([#23](https://github.com/DiamondJoseph/boing/issues/23)) ([0885ac0](https://github.com/DiamondJoseph/boing/commit/0885ac061b1932ee7386aeb95041bce253a09bc0))
+
 ## [2.0.1](https://github.com/DiamondJoseph/boing/compare/v2.0.0...v2.0.1) (2026-08-21)
 
 
