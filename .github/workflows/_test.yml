@@ -21,4 +21,5 @@ jobs:
           distribution: ${{ inputs.java_distribution }}
           cache: 'maven'
 
-      - run: mvn verify --batch-mode -Dspotless.check.skip=true
+      - working-directory: server
+        run: mvn verify --batch-mode -Dspotless.check.skip=true

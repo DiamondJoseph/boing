@@ -6,14 +6,18 @@
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
-			"version": "25",
+			"version": "25",  // Use latest LTS, keep in sync with Dockerfile
 			"installMaven": true
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"moby": false
 		},
 		"ghcr.io/prulloac/devcontainer-features/pre-commit:1": {},
-		"ghcr.io/devcontainers-extra/features/typescript:2": {}
+		"ghcr.io/devcontainers/features/node:2": {
+			"version": "24"  // Use latest LTS, keep in sync with Dockerfile
+		},
+		"ghcr.io/devcontainers-extra/features/typescript:2": {},
+		"ghcr.io/devcontainers-extra/features/tsx:1": {}
 	},
 	"mounts": [
         {
@@ -22,5 +26,12 @@
             "type": "bind"
         }
     ],
-	"postCreateCommand": "helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false && pre-commit install --install-hooks"
+	"postCreateCommand": "helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false && pre-commit install --install-hooks",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
 }
