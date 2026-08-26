@@ -17,4 +17,3 @@ jobs:
           # metadata:read; actions:write, contents:write, and pull_requests:write
           # https://github.com/googleapis/release-please-action/issues/818#issuecomment-1889368155
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
-          release-type: maven

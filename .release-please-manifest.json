@@ -1,0 +1,31 @@
+{
+    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+    "skip-changelog": true,
+    "packages": {
+        ".": {
+            "skip-changelog": false,
+            "release-type": "maven"
+        },
+        "chart": {
+            "release-type": "helm",
+            "extra-files": [
+                {
+                    "type": "yaml",
+                    "path": "chart/Chart.yaml",
+                    "jsonpath": "$.appVersion"
+                }
+            ]
+        }
+    },
+    "plugins": [
+        {
+            "type": "linked-versions",
+            "groupName": "all",
+            "components": [
+                ".",
+                "server",
+                "chart"
+            ]
+        }
+    ]
+}
