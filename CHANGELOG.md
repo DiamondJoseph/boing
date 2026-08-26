@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.2](https://github.com/DiamondJoseph/boing/compare/v2.0.2-SNAPSHOT...v2.0.2) (2026-08-26)
+
+
+### Bug Fixes
+
+* cache helm schema plugin install layer ([7b449be](https://github.com/DiamondJoseph/boing/commit/7b449beec12c2c15666743c4ad51aa4ce5981cbb))
+* cache helm schema plugin install layer ([#34](https://github.com/DiamondJoseph/boing/issues/34)) ([42d8f05](https://github.com/DiamondJoseph/boing/commit/42d8f05ed33145402151227816edfd17d12020af))
+* release-please files misnamed ([56fb72b](https://github.com/DiamondJoseph/boing/commit/56fb72b5bb7c46d847deccd7f6e1bc11d8a1657e))
+* release-please files misnamed ([#36](https://github.com/DiamondJoseph/boing/issues/36)) ([ff03377](https://github.com/DiamondJoseph/boing/commit/ff03377cb302f90e0e723232fa3fee128eb26131))
+* version Chart and container together ([f709ef9](https://github.com/DiamondJoseph/boing/commit/f709ef9dcbf79f55d29b2225c19bf2310af8527a))
+* version packages together ([#31](https://github.com/DiamondJoseph/boing/issues/31)) ([9c0b3b5](https://github.com/DiamondJoseph/boing/commit/9c0b3b558f6ea6c37d1f2ddc7d31da814c415223))
+
+
+### Documentation
+
+* add documentation and infrastructure ([1758c0f](https://github.com/DiamondJoseph/boing/commit/1758c0ff8500b66c267f41ede5d7aa5aa1e70534))
+* add documentation and infrastructure ([#23](https://github.com/DiamondJoseph/boing/issues/23)) ([0885ac0](https://github.com/DiamondJoseph/boing/commit/0885ac061b1932ee7386aeb95041bce253a09bc0))
+
 ## [2.0.1](https://github.com/DiamondJoseph/boing/compare/v2.0.0...v2.0.1) (2026-08-21)
 
 
