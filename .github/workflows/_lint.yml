@@ -36,4 +36,15 @@ jobs:
         distribution: ${{ inputs.java_distribution }}
         cache: 'maven'
 
-    - run: mvn spotless:check --batch-mode
+    - working-directory: server
+      run: mvn spotless:check --batch-mode
+
+  node_lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+    - working-directory: client
+      run: |
+        npm ci
+        npx eslint .

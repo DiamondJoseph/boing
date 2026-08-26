@@ -26,8 +26,6 @@ jobs:
         DOCKER_BUILD_RECORD_UPLOAD: false
 
 
-    - run: docker run --rm tag_for_testing
-
     - id: meta
       uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v5
       with:

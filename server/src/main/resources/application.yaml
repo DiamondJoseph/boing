@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: boing
+  web:
+    resources:
+      static-locations: classpath:/static/,file:/workspaces/boing/client/dist

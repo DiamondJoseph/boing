@@ -1,4 +1,10 @@
+### Server/Maven ###
 server/target/
+
+### Client/TypeScript ###
+client/dist/
+client/node_modules/
+client/src/version.ts
 
 ### VS Code ###
 .vscode/
