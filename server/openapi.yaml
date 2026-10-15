@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - vampire-controller
-      operationId: getAll
+      operationId: listVampires
       responses:
         "200":
           description: OK
@@ -23,7 +23,7 @@ paths:
     post:
       tags:
       - vampire-controller
-      operationId: create
+      operationId: createVampire
       requestBody:
         content:
           application/json:
@@ -41,7 +41,7 @@ paths:
     get:
       tags:
       - skill-controller
-      operationId: getAll_1
+      operationId: listSkills
       responses:
         "200":
           description: OK
@@ -54,7 +54,7 @@ paths:
     post:
       tags:
       - skill-controller
-      operationId: create_1
+      operationId: createSkill
       requestBody:
         content:
           application/json:
@@ -72,7 +72,7 @@ paths:
     get:
       tags:
       - resource-controller
-      operationId: getAll_2
+      operationId: listResources
       responses:
         "200":
           description: OK
@@ -85,7 +85,7 @@ paths:
     post:
       tags:
       - resource-controller
-      operationId: create_2
+      operationId: createResource
       requestBody:
         content:
           application/json:
@@ -103,7 +103,7 @@ paths:
     get:
       tags:
       - prompt-controller
-      operationId: getAll_3
+      operationId: listPrompts
       responses:
         "200":
           description: OK
@@ -116,7 +116,7 @@ paths:
     post:
       tags:
       - prompt-controller
-      operationId: create_3
+      operationId: createPrompt
       requestBody:
         content:
           application/json:
@@ -134,7 +134,7 @@ paths:
     get:
       tags:
       - person-controller
-      operationId: getAll_4
+      operationId: listPeople
       responses:
         "200":
           description: OK
@@ -147,7 +147,7 @@ paths:
     post:
       tags:
       - person-controller
-      operationId: create_4
+      operationId: createPerson
       requestBody:
         content:
           application/json:
@@ -165,7 +165,7 @@ paths:
     get:
       tags:
       - page-controller
-      operationId: getAll_5
+      operationId: listPages
       responses:
         "200":
           description: OK
@@ -178,7 +178,7 @@ paths:
     post:
       tags:
       - page-controller
-      operationId: create_5
+      operationId: createPage
       requestBody:
         content:
           application/json:
@@ -196,7 +196,7 @@ paths:
     get:
       tags:
       - memory-controller
-      operationId: getAll_6
+      operationId: listMemories
       responses:
         "200":
           description: OK
@@ -209,7 +209,7 @@ paths:
     post:
       tags:
       - memory-controller
-      operationId: create_6
+      operationId: createMemory
       requestBody:
         content:
           application/json:
@@ -227,7 +227,7 @@ paths:
     get:
       tags:
       - game-controller
-      operationId: getAll_7
+      operationId: listGames
       responses:
         "200":
           description: OK
@@ -240,7 +240,7 @@ paths:
     post:
       tags:
       - game-controller
-      operationId: create_7
+      operationId: createGame
       requestBody:
         content:
           application/json:
@@ -258,7 +258,7 @@ paths:
     get:
       tags:
       - experience-controller
-      operationId: getAll_8
+      operationId: listExperiences
       responses:
         "200":
           description: OK
@@ -271,7 +271,7 @@ paths:
     post:
       tags:
       - experience-controller
-      operationId: create_8
+      operationId: createExperience
       requestBody:
         content:
           application/json:
@@ -289,7 +289,7 @@ paths:
     get:
       tags:
       - diary-controller
-      operationId: getAll_9
+      operationId: listDiaries
       responses:
         "200":
           description: OK
@@ -302,7 +302,7 @@ paths:
     post:
       tags:
       - diary-controller
-      operationId: create_9
+      operationId: createDiary
       requestBody:
         content:
           application/json:
@@ -320,7 +320,7 @@ paths:
     get:
       tags:
       - description-controller
-      operationId: getAll_10
+      operationId: listDescriptions
       responses:
         "200":
           description: OK
@@ -333,7 +333,7 @@ paths:
     post:
       tags:
       - description-controller
-      operationId: create_10
+      operationId: createDescription
       requestBody:
         content:
           application/json:
@@ -351,7 +351,7 @@ paths:
     get:
       tags:
       - book-controller
-      operationId: getAll_11
+      operationId: listBooks
       responses:
         "200":
           description: OK
@@ -364,7 +364,7 @@ paths:
     post:
       tags:
       - book-controller
-      operationId: create_11
+      operationId: createBook
       requestBody:
         content:
           application/json:
@@ -382,7 +382,7 @@ paths:
     get:
       tags:
       - skill-controller
-      operationId: getById
+      operationId: getSkill
       parameters:
       - name: id
         in: path
@@ -400,7 +400,7 @@ paths:
     delete:
       tags:
       - skill-controller
-      operationId: delete
+      operationId: deleteSkill
       parameters:
       - name: id
         in: path
@@ -414,7 +414,7 @@ paths:
     patch:
       tags:
       - skill-controller
-      operationId: update
+      operationId: updateSkill
       parameters:
       - name: id
         in: path
@@ -439,7 +439,7 @@ paths:
     get:
       tags:
       - resource-controller
-      operationId: getById_1
+      operationId: getResource
       parameters:
       - name: id
         in: path
@@ -457,7 +457,7 @@ paths:
     delete:
       tags:
       - resource-controller
-      operationId: delete_1
+      operationId: deleteResource
       parameters:
       - name: id
         in: path
@@ -471,7 +471,7 @@ paths:
     patch:
       tags:
       - resource-controller
-      operationId: update_1
+      operationId: updateResource
       parameters:
       - name: id
         in: path
@@ -496,7 +496,7 @@ paths:
     get:
       tags:
       - person-controller
-      operationId: getById_2
+      operationId: getPerson
       parameters:
       - name: id
         in: path
@@ -514,7 +514,7 @@ paths:
     delete:
       tags:
       - person-controller
-      operationId: delete_2
+      operationId: deletePerson
       parameters:
       - name: id
         in: path
@@ -528,7 +528,7 @@ paths:
     patch:
       tags:
       - person-controller
-      operationId: update_2
+      operationId: updatePerson
       parameters:
       - name: id
         in: path
@@ -549,11 +549,68 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/Person"
+  /api/memory/{id}:
+    get:
+      tags:
+      - memory-controller
+      operationId: getMemory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Memory"
+    delete:
+      tags:
+      - memory-controller
+      operationId: deleteMemory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags:
+      - memory-controller
+      operationId: updateMemory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MemoryUpdate"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Memory"
   /api/game/{id}:
     get:
       tags:
       - game-controller
-      operationId: getById_3
+      operationId: getGame
       parameters:
       - name: id
         in: path
@@ -571,7 +628,7 @@ paths:
     delete:
       tags:
       - game-controller
-      operationId: delete_3
+      operationId: deleteGame
       parameters:
       - name: id
         in: path
@@ -585,7 +642,7 @@ paths:
     patch:
       tags:
       - game-controller
-      operationId: update_3
+      operationId: updateGame
       parameters:
       - name: id
         in: path
@@ -610,7 +667,7 @@ paths:
     get:
       tags:
       - diary-controller
-      operationId: getById_4
+      operationId: getDiary
       parameters:
       - name: id
         in: path
@@ -628,7 +685,7 @@ paths:
     delete:
       tags:
       - diary-controller
-      operationId: delete_4
+      operationId: deleteDiary
       parameters:
       - name: id
         in: path
@@ -642,7 +699,7 @@ paths:
     patch:
       tags:
       - diary-controller
-      operationId: update_4
+      operationId: updateDiary
       parameters:
       - name: id
         in: path
@@ -667,7 +724,7 @@ paths:
     get:
       tags:
       - vampire-controller
-      operationId: getById_5
+      operationId: getVampire
       parameters:
       - name: id
         in: path
@@ -685,7 +742,7 @@ paths:
     delete:
       tags:
       - vampire-controller
-      operationId: delete_5
+      operationId: deleteVampire
       parameters:
       - name: id
         in: path
@@ -700,7 +757,7 @@ paths:
     get:
       tags:
       - prompt-controller
-      operationId: getById_6
+      operationId: getPrompt
       parameters:
       - name: id
         in: path
@@ -718,7 +775,7 @@ paths:
     delete:
       tags:
       - prompt-controller
-      operationId: delete_6
+      operationId: deletePrompt
       parameters:
       - name: id
         in: path
@@ -733,7 +790,7 @@ paths:
     get:
       tags:
       - page-controller
-      operationId: getById_7
+      operationId: getPage
       parameters:
       - name: id
         in: path
@@ -751,40 +808,7 @@ paths:
     delete:
       tags:
       - page-controller
-      operationId: delete_7
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: OK
-  /api/memory/{id}:
-    get:
-      tags:
-      - memory-controller
-      operationId: getById_8
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: "#/components/schemas/Memory"
-    delete:
-      tags:
-      - memory-controller
-      operationId: delete_8
+      operationId: deletePage
       parameters:
       - name: id
         in: path
@@ -799,7 +823,7 @@ paths:
     get:
       tags:
       - experience-controller
-      operationId: getById_9
+      operationId: getExperience
       parameters:
       - name: id
         in: path
@@ -817,7 +841,7 @@ paths:
     delete:
       tags:
       - experience-controller
-      operationId: delete_9
+      operationId: deleteExperience
       parameters:
       - name: id
         in: path
@@ -832,7 +856,7 @@ paths:
     get:
       tags:
       - dice-controller
-      operationId: first
+      operationId: rollFirstDice
       responses:
         "200":
           description: OK
@@ -845,7 +869,7 @@ paths:
     get:
       tags:
       - dice-controller
-      operationId: next
+      operationId: rollNextDice
       parameters:
       - name: current
         in: path
@@ -865,7 +889,7 @@ paths:
     get:
       tags:
       - description-controller
-      operationId: getById_10
+      operationId: getDescription
       parameters:
       - name: id
         in: path
@@ -883,7 +907,7 @@ paths:
     delete:
       tags:
       - description-controller
-      operationId: delete_10
+      operationId: deleteDescription
       parameters:
       - name: id
         in: path
@@ -898,7 +922,7 @@ paths:
     get:
       tags:
       - book-controller
-      operationId: getById_11
+      operationId: getBook
       parameters:
       - name: id
         in: path
@@ -916,7 +940,7 @@ paths:
     delete:
       tags:
       - book-controller
-      operationId: delete_11
+      operationId: deleteBook
       parameters:
       - name: id
         in: path
@@ -1237,6 +1261,13 @@ components:
           type: boolean
       required:
       - newDescription
+    MemoryUpdate:
+      type: object
+      properties:
+        newExperience:
+          $ref: "#/components/schemas/NewExperience"
+        remembered:
+          type: boolean
     AttachedIdPersonUpdate:
       type: object
       properties:
@@ -1273,8 +1304,6 @@ components:
     GameUpdate:
       type: object
       properties:
-        newExperience:
-          $ref: "#/components/schemas/NewExperience"
         newPeople:
           type: array
           items:
@@ -1299,8 +1328,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/AttachedIdSkillUpdate"
-      required:
-      - newExperience
     DiaryUpdate:
       type: object
       properties:

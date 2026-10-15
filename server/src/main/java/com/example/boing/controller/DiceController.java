@@ -1,6 +1,7 @@
 package com.example.boing.controller;
 
 import com.example.boing.service.DiceService;
+import io.swagger.v3.oas.annotations.Operation;
 import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,13 @@ public class DiceController {
   @Autowired DiceService service;
 
   @GetMapping
+  @Operation(operationId = "rollFirstDice")
   public ResponseEntity<Integer> first() {
     return ResponseEntity.ok(service.next(ThreadLocalRandom.current(), 1));
   }
 
   @GetMapping("/{current}")
+  @Operation(operationId = "rollNextDice")
   public ResponseEntity<Integer> next(@PathVariable int current) {
     return ResponseEntity.ok(service.next(ThreadLocalRandom.current(), current));
   }

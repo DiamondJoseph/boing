@@ -2,7 +2,6 @@ package com.example.boing.service;
 
 import com.example.boing.domain.Game;
 import com.example.boing.domain.generic.Persistable;
-import com.example.boing.service.ExperienceService.NewExperience;
 import com.example.boing.service.PersonService.NewPerson;
 import com.example.boing.service.PersonService.PersonUpdate;
 import com.example.boing.service.ResourceService.NewResource;
@@ -32,7 +31,12 @@ public class GameService extends MutableService<Game, GameService.NewGame, GameS
     var people = game.people.stream().map(pService::createAndSave).toList();
     var resources = game.resources.stream().map(rService::createAndSave).toList();
     var skills = game.skills.stream().map(sService::createAndSave).toList();
-    return new Game(vampire, people, resources, skills);
+    try {
+      return new Game(vampire, people, resources, skills);
+    } catch (IllegalArgumentException e) {
+      // The children saved above are rolled back with the rest of createAndSave
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+    }
   }
 
   @Override
@@ -82,7 +86,6 @@ public class GameService extends MutableService<Game, GameService.NewGame, GameS
   ;
 
   public record GameUpdate(
-      @JsonProperty(required = true) NewExperience newExperience,
       @JsonProperty(required = false) List<NewPerson> newPeople,
       @JsonProperty(required = false) List<AttachedId<PersonUpdate>> peopleUpdates,
       @JsonProperty(required = false) List<NewResource> newResources,

@@ -11,9 +11,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll"];
+        get: operations["listVampires"];
         put?: never;
-        post: operations["create"];
+        post: operations["createVampire"];
         delete?: never;
         options?: never;
         head?: never;
@@ -27,9 +27,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_1"];
+        get: operations["listSkills"];
         put?: never;
-        post: operations["create_1"];
+        post: operations["createSkill"];
         delete?: never;
         options?: never;
         head?: never;
@@ -43,9 +43,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_2"];
+        get: operations["listResources"];
         put?: never;
-        post: operations["create_2"];
+        post: operations["createResource"];
         delete?: never;
         options?: never;
         head?: never;
@@ -59,9 +59,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_3"];
+        get: operations["listPrompts"];
         put?: never;
-        post: operations["create_3"];
+        post: operations["createPrompt"];
         delete?: never;
         options?: never;
         head?: never;
@@ -75,9 +75,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_4"];
+        get: operations["listPeople"];
         put?: never;
-        post: operations["create_4"];
+        post: operations["createPerson"];
         delete?: never;
         options?: never;
         head?: never;
@@ -91,9 +91,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_5"];
+        get: operations["listPages"];
         put?: never;
-        post: operations["create_5"];
+        post: operations["createPage"];
         delete?: never;
         options?: never;
         head?: never;
@@ -107,9 +107,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_6"];
+        get: operations["listMemories"];
         put?: never;
-        post: operations["create_6"];
+        post: operations["createMemory"];
         delete?: never;
         options?: never;
         head?: never;
@@ -123,9 +123,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_7"];
+        get: operations["listGames"];
         put?: never;
-        post: operations["create_7"];
+        post: operations["createGame"];
         delete?: never;
         options?: never;
         head?: never;
@@ -139,9 +139,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_8"];
+        get: operations["listExperiences"];
         put?: never;
-        post: operations["create_8"];
+        post: operations["createExperience"];
         delete?: never;
         options?: never;
         head?: never;
@@ -155,9 +155,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_9"];
+        get: operations["listDiaries"];
         put?: never;
-        post: operations["create_9"];
+        post: operations["createDiary"];
         delete?: never;
         options?: never;
         head?: never;
@@ -171,9 +171,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_10"];
+        get: operations["listDescriptions"];
         put?: never;
-        post: operations["create_10"];
+        post: operations["createDescription"];
         delete?: never;
         options?: never;
         head?: never;
@@ -187,9 +187,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getAll_11"];
+        get: operations["listBooks"];
         put?: never;
-        post: operations["create_11"];
+        post: operations["createBook"];
         delete?: never;
         options?: never;
         head?: never;
@@ -203,13 +203,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById"];
+        get: operations["getSkill"];
         put?: never;
         post?: never;
-        delete: operations["delete"];
+        delete: operations["deleteSkill"];
         options?: never;
         head?: never;
-        patch: operations["update"];
+        patch: operations["updateSkill"];
         trace?: never;
     };
     "/api/resource/{id}": {
@@ -219,13 +219,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_1"];
+        get: operations["getResource"];
         put?: never;
         post?: never;
-        delete: operations["delete_1"];
+        delete: operations["deleteResource"];
         options?: never;
         head?: never;
-        patch: operations["update_1"];
+        patch: operations["updateResource"];
         trace?: never;
     };
     "/api/person/{id}": {
@@ -235,13 +235,29 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_2"];
+        get: operations["getPerson"];
         put?: never;
         post?: never;
-        delete: operations["delete_2"];
+        delete: operations["deletePerson"];
         options?: never;
         head?: never;
-        patch: operations["update_2"];
+        patch: operations["updatePerson"];
+        trace?: never;
+    };
+    "/api/memory/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMemory"];
+        put?: never;
+        post?: never;
+        delete: operations["deleteMemory"];
+        options?: never;
+        head?: never;
+        patch: operations["updateMemory"];
         trace?: never;
     };
     "/api/game/{id}": {
@@ -251,13 +267,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_3"];
+        get: operations["getGame"];
         put?: never;
         post?: never;
-        delete: operations["delete_3"];
+        delete: operations["deleteGame"];
         options?: never;
         head?: never;
-        patch: operations["update_3"];
+        patch: operations["updateGame"];
         trace?: never;
     };
     "/api/diary/{id}": {
@@ -267,13 +283,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_4"];
+        get: operations["getDiary"];
         put?: never;
         post?: never;
-        delete: operations["delete_4"];
+        delete: operations["deleteDiary"];
         options?: never;
         head?: never;
-        patch: operations["update_4"];
+        patch: operations["updateDiary"];
         trace?: never;
     };
     "/api/vampire/{id}": {
@@ -283,10 +299,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_5"];
+        get: operations["getVampire"];
         put?: never;
         post?: never;
-        delete: operations["delete_5"];
+        delete: operations["deleteVampire"];
         options?: never;
         head?: never;
         patch?: never;
@@ -299,10 +315,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_6"];
+        get: operations["getPrompt"];
         put?: never;
         post?: never;
-        delete: operations["delete_6"];
+        delete: operations["deletePrompt"];
         options?: never;
         head?: never;
         patch?: never;
@@ -315,26 +331,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_7"];
+        get: operations["getPage"];
         put?: never;
         post?: never;
-        delete: operations["delete_7"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/memory/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getById_8"];
-        put?: never;
-        post?: never;
-        delete: operations["delete_8"];
+        delete: operations["deletePage"];
         options?: never;
         head?: never;
         patch?: never;
@@ -347,10 +347,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_9"];
+        get: operations["getExperience"];
         put?: never;
         post?: never;
-        delete: operations["delete_9"];
+        delete: operations["deleteExperience"];
         options?: never;
         head?: never;
         patch?: never;
@@ -363,7 +363,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["first"];
+        get: operations["rollFirstDice"];
         put?: never;
         post?: never;
         delete?: never;
@@ -379,7 +379,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["next"];
+        get: operations["rollNextDice"];
         put?: never;
         post?: never;
         delete?: never;
@@ -395,10 +395,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_10"];
+        get: operations["getDescription"];
         put?: never;
         post?: never;
-        delete: operations["delete_10"];
+        delete: operations["deleteDescription"];
         options?: never;
         head?: never;
         patch?: never;
@@ -411,10 +411,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getById_11"];
+        get: operations["getBook"];
         put?: never;
         post?: never;
-        delete: operations["delete_11"];
+        delete: operations["deleteBook"];
         options?: never;
         head?: never;
         patch?: never;
@@ -564,6 +564,10 @@ export interface components {
             dead?: boolean;
             immortal?: boolean;
         };
+        MemoryUpdate: {
+            newExperience?: components["schemas"]["NewExperience"];
+            remembered?: boolean;
+        };
         AttachedIdPersonUpdate: {
             /** Format: int64 */
             id: number;
@@ -580,7 +584,6 @@ export interface components {
             update: components["schemas"]["SkillUpdate"];
         };
         GameUpdate: {
-            newExperience: components["schemas"]["NewExperience"];
             newPeople?: components["schemas"]["NewPerson"][];
             peopleUpdates?: components["schemas"]["AttachedIdPersonUpdate"][];
             newResources?: components["schemas"]["NewResource"][];
@@ -601,7 +604,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    getAll: {
+    listVampires: {
         parameters: {
             query?: never;
             header?: never;
@@ -621,7 +624,7 @@ export interface operations {
             };
         };
     };
-    create: {
+    createVampire: {
         parameters: {
             query?: never;
             header?: never;
@@ -645,7 +648,7 @@ export interface operations {
             };
         };
     };
-    getAll_1: {
+    listSkills: {
         parameters: {
             query?: never;
             header?: never;
@@ -665,7 +668,7 @@ export interface operations {
             };
         };
     };
-    create_1: {
+    createSkill: {
         parameters: {
             query?: never;
             header?: never;
@@ -689,7 +692,7 @@ export interface operations {
             };
         };
     };
-    getAll_2: {
+    listResources: {
         parameters: {
             query?: never;
             header?: never;
@@ -709,7 +712,7 @@ export interface operations {
             };
         };
     };
-    create_2: {
+    createResource: {
         parameters: {
             query?: never;
             header?: never;
@@ -733,7 +736,7 @@ export interface operations {
             };
         };
     };
-    getAll_3: {
+    listPrompts: {
         parameters: {
             query?: never;
             header?: never;
@@ -753,7 +756,7 @@ export interface operations {
             };
         };
     };
-    create_3: {
+    createPrompt: {
         parameters: {
             query?: never;
             header?: never;
@@ -777,7 +780,7 @@ export interface operations {
             };
         };
     };
-    getAll_4: {
+    listPeople: {
         parameters: {
             query?: never;
             header?: never;
@@ -797,7 +800,7 @@ export interface operations {
             };
         };
     };
-    create_4: {
+    createPerson: {
         parameters: {
             query?: never;
             header?: never;
@@ -821,7 +824,7 @@ export interface operations {
             };
         };
     };
-    getAll_5: {
+    listPages: {
         parameters: {
             query?: never;
             header?: never;
@@ -841,7 +844,7 @@ export interface operations {
             };
         };
     };
-    create_5: {
+    createPage: {
         parameters: {
             query?: never;
             header?: never;
@@ -865,7 +868,7 @@ export interface operations {
             };
         };
     };
-    getAll_6: {
+    listMemories: {
         parameters: {
             query?: never;
             header?: never;
@@ -885,7 +888,7 @@ export interface operations {
             };
         };
     };
-    create_6: {
+    createMemory: {
         parameters: {
             query?: never;
             header?: never;
@@ -909,7 +912,7 @@ export interface operations {
             };
         };
     };
-    getAll_7: {
+    listGames: {
         parameters: {
             query?: never;
             header?: never;
@@ -929,7 +932,7 @@ export interface operations {
             };
         };
     };
-    create_7: {
+    createGame: {
         parameters: {
             query?: never;
             header?: never;
@@ -953,7 +956,7 @@ export interface operations {
             };
         };
     };
-    getAll_8: {
+    listExperiences: {
         parameters: {
             query?: never;
             header?: never;
@@ -973,7 +976,7 @@ export interface operations {
             };
         };
     };
-    create_8: {
+    createExperience: {
         parameters: {
             query?: never;
             header?: never;
@@ -997,7 +1000,7 @@ export interface operations {
             };
         };
     };
-    getAll_9: {
+    listDiaries: {
         parameters: {
             query?: never;
             header?: never;
@@ -1017,7 +1020,7 @@ export interface operations {
             };
         };
     };
-    create_9: {
+    createDiary: {
         parameters: {
             query?: never;
             header?: never;
@@ -1041,7 +1044,7 @@ export interface operations {
             };
         };
     };
-    getAll_10: {
+    listDescriptions: {
         parameters: {
             query?: never;
             header?: never;
@@ -1061,7 +1064,7 @@ export interface operations {
             };
         };
     };
-    create_10: {
+    createDescription: {
         parameters: {
             query?: never;
             header?: never;
@@ -1085,7 +1088,7 @@ export interface operations {
             };
         };
     };
-    getAll_11: {
+    listBooks: {
         parameters: {
             query?: never;
             header?: never;
@@ -1105,7 +1108,7 @@ export interface operations {
             };
         };
     };
-    create_11: {
+    createBook: {
         parameters: {
             query?: never;
             header?: never;
@@ -1129,7 +1132,7 @@ export interface operations {
             };
         };
     };
-    getById: {
+    getSkill: {
         parameters: {
             query?: never;
             header?: never;
@@ -1151,7 +1154,7 @@ export interface operations {
             };
         };
     };
-    delete: {
+    deleteSkill: {
         parameters: {
             query?: never;
             header?: never;
@@ -1171,7 +1174,7 @@ export interface operations {
             };
         };
     };
-    update: {
+    updateSkill: {
         parameters: {
             query?: never;
             header?: never;
@@ -1197,7 +1200,7 @@ export interface operations {
             };
         };
     };
-    getById_1: {
+    getResource: {
         parameters: {
             query?: never;
             header?: never;
@@ -1219,7 +1222,7 @@ export interface operations {
             };
         };
     };
-    delete_1: {
+    deleteResource: {
         parameters: {
             query?: never;
             header?: never;
@@ -1239,7 +1242,7 @@ export interface operations {
             };
         };
     };
-    update_1: {
+    updateResource: {
         parameters: {
             query?: never;
             header?: never;
@@ -1265,7 +1268,7 @@ export interface operations {
             };
         };
     };
-    getById_2: {
+    getPerson: {
         parameters: {
             query?: never;
             header?: never;
@@ -1287,7 +1290,7 @@ export interface operations {
             };
         };
     };
-    delete_2: {
+    deletePerson: {
         parameters: {
             query?: never;
             header?: never;
@@ -1307,7 +1310,7 @@ export interface operations {
             };
         };
     };
-    update_2: {
+    updatePerson: {
         parameters: {
             query?: never;
             header?: never;
@@ -1333,7 +1336,75 @@ export interface operations {
             };
         };
     };
-    getById_3: {
+    getMemory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Memory"];
+                };
+            };
+        };
+    };
+    deleteMemory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    updateMemory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MemoryUpdate"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Memory"];
+                };
+            };
+        };
+    };
+    getGame: {
         parameters: {
             query?: never;
             header?: never;
@@ -1355,7 +1426,7 @@ export interface operations {
             };
         };
     };
-    delete_3: {
+    deleteGame: {
         parameters: {
             query?: never;
             header?: never;
@@ -1375,7 +1446,7 @@ export interface operations {
             };
         };
     };
-    update_3: {
+    updateGame: {
         parameters: {
             query?: never;
             header?: never;
@@ -1401,7 +1472,7 @@ export interface operations {
             };
         };
     };
-    getById_4: {
+    getDiary: {
         parameters: {
             query?: never;
             header?: never;
@@ -1423,7 +1494,7 @@ export interface operations {
             };
         };
     };
-    delete_4: {
+    deleteDiary: {
         parameters: {
             query?: never;
             header?: never;
@@ -1443,7 +1514,7 @@ export interface operations {
             };
         };
     };
-    update_4: {
+    updateDiary: {
         parameters: {
             query?: never;
             header?: never;
@@ -1469,7 +1540,7 @@ export interface operations {
             };
         };
     };
-    getById_5: {
+    getVampire: {
         parameters: {
             query?: never;
             header?: never;
@@ -1491,7 +1562,7 @@ export interface operations {
             };
         };
     };
-    delete_5: {
+    deleteVampire: {
         parameters: {
             query?: never;
             header?: never;
@@ -1511,7 +1582,7 @@ export interface operations {
             };
         };
     };
-    getById_6: {
+    getPrompt: {
         parameters: {
             query?: never;
             header?: never;
@@ -1533,7 +1604,7 @@ export interface operations {
             };
         };
     };
-    delete_6: {
+    deletePrompt: {
         parameters: {
             query?: never;
             header?: never;
@@ -1553,7 +1624,7 @@ export interface operations {
             };
         };
     };
-    getById_7: {
+    getPage: {
         parameters: {
             query?: never;
             header?: never;
@@ -1575,7 +1646,7 @@ export interface operations {
             };
         };
     };
-    delete_7: {
+    deletePage: {
         parameters: {
             query?: never;
             header?: never;
@@ -1595,49 +1666,7 @@ export interface operations {
             };
         };
     };
-    getById_8: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Memory"];
-                };
-            };
-        };
-    };
-    delete_8: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    getById_9: {
+    getExperience: {
         parameters: {
             query?: never;
             header?: never;
@@ -1659,7 +1688,7 @@ export interface operations {
             };
         };
     };
-    delete_9: {
+    deleteExperience: {
         parameters: {
             query?: never;
             header?: never;
@@ -1679,7 +1708,7 @@ export interface operations {
             };
         };
     };
-    first: {
+    rollFirstDice: {
         parameters: {
             query?: never;
             header?: never;
@@ -1699,7 +1728,7 @@ export interface operations {
             };
         };
     };
-    next: {
+    rollNextDice: {
         parameters: {
             query?: never;
             header?: never;
@@ -1721,7 +1750,7 @@ export interface operations {
             };
         };
     };
-    getById_10: {
+    getDescription: {
         parameters: {
             query?: never;
             header?: never;
@@ -1743,7 +1772,7 @@ export interface operations {
             };
         };
     };
-    delete_10: {
+    deleteDescription: {
         parameters: {
             query?: never;
             header?: never;
@@ -1763,7 +1792,7 @@ export interface operations {
             };
         };
     };
-    getById_11: {
+    getBook: {
         parameters: {
             query?: never;
             header?: never;
@@ -1785,7 +1814,7 @@ export interface operations {
             };
         };
     };
-    delete_11: {
+    deleteBook: {
         parameters: {
             query?: never;
             header?: never;
