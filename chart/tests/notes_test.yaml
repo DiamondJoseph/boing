@@ -1,0 +1,33 @@
+suite: install notes
+templates:
+  - NOTES.txt
+release:
+  name: test
+  namespace: vampires
+tests:
+  - it: explains how to port-forward to a ClusterIP service
+    asserts:
+      - matchRegexRaw:
+          pattern: kubectl --namespace vampires port-forward \$POD_NAME 8080:\$CONTAINER_PORT
+
+  - it: lists the ingress URLs, using https when TLS is configured
+    set:
+      ingress.enabled: true
+      ingress.hosts:
+        - host: boing.example.com
+          paths:
+            - path: /
+      ingress.tls:
+        - secretName: boing-tls
+          hosts:
+            - boing.example.com
+    asserts:
+      - matchRegexRaw:
+          pattern: https://boing.example.com/
+
+  - it: gives the HTTP route's first hostname
+    set:
+      httpRoute.enabled: true
+    asserts:
+      - matchRegexRaw:
+          pattern: export APP_HOSTNAME=chart-example.local

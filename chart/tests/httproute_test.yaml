@@ -1,0 +1,42 @@
+suite: HTTP route
+templates:
+  - httproute.yaml
+release:
+  name: test
+tests:
+  - it: is not created by default
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: sends matching requests to the service
+    set:
+      httpRoute.enabled: true
+      httpRoute.hostnames:
+        - boing.example.com
+      httpRoute.rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+    asserts:
+      - equal:
+          path: spec.parentRefs
+          value:
+            - name: gateway
+              sectionName: http
+      - equal:
+          path: spec.hostnames
+          value:
+            - boing.example.com
+      - equal:
+          path: spec.rules
+          value:
+            - matches:
+                - path:
+                    type: PathPrefix
+                    value: /
+              backendRefs:
+                - name: test-boing
+                  port: 80
+                  weight: 1

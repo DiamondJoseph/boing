@@ -1,0 +1,35 @@
+suite: service
+templates:
+  - service.yaml
+release:
+  name: test
+tests:
+  - it: exposes the pods' http port
+    asserts:
+      - equal:
+          path: spec.type
+          value: ClusterIP
+      - equal:
+          path: spec.ports[0]
+          value:
+            port: 80
+            targetPort: http
+            protocol: TCP
+            name: http
+      - equal:
+          path: spec.selector
+          value:
+            app.kubernetes.io/name: boing
+            app.kubernetes.io/instance: test
+
+  - it: uses the configured type and port
+    set:
+      service.type: NodePort
+      service.port: 8080
+    asserts:
+      - equal:
+          path: spec.type
+          value: NodePort
+      - equal:
+          path: spec.ports[0].port
+          value: 8080

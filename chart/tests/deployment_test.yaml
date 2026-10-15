@@ -1,0 +1,148 @@
+suite: deployment
+templates:
+  - deployment.yaml
+release:
+  name: test
+chart:
+  # Fixed, so release-please's version bumps don't break the tests
+  version: 1.0.0
+  appVersion: 1.2.3
+tests:
+  - it: uses the chart's app version as the default image tag
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: ghcr.io/diamondjoseph/boing:1.2.3
+
+  - it: uses the image tag when one is set
+    set:
+      image.tag: 9.9.9
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: ghcr.io/diamondjoseph/boing:9.9.9
+
+  - it: names resources after the release and chart
+    asserts:
+      - equal:
+          path: metadata.name
+          value: test-boing
+
+  - it: uses the release name alone when it already contains the chart name
+    release:
+      name: my-boing
+    asserts:
+      - equal:
+          path: metadata.name
+          value: my-boing
+
+  - it: uses fullnameOverride, truncated to 63 characters without a trailing dash
+    set:
+      # 62 "a"s then "-b": truncating to 63 leaves a trailing "-", which must be trimmed
+      fullnameOverride: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-b
+    asserts:
+      - equal:
+          path: metadata.name
+          value: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+  - it: selects its own pods
+    asserts:
+      - equal:
+          path: spec.selector.matchLabels
+          value:
+            app.kubernetes.io/name: boing
+            app.kubernetes.io/instance: test
+      - isSubset:
+          path: spec.template.metadata.labels
+          content:
+            app.kubernetes.io/name: boing
+            app.kubernetes.io/instance: test
+
+  - it: sets replicas from replicaCount
+    set:
+      replicaCount: 3
+    asserts:
+      - equal:
+          path: spec.replicas
+          value: 3
+
+  - it: leaves replicas to the autoscaler when autoscaling is enabled
+    set:
+      autoscaling.enabled: true
+      replicaCount: 3
+    asserts:
+      - notExists:
+          path: spec.replicas
+
+  - it: mounts the server config and points Spring at it
+    asserts:
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: server-config
+            projected:
+              sources:
+                - configMap:
+                    name: boing-server-config
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: server-config
+            mountPath: /config
+            readOnly: true
+      - contains:
+          path: spec.template.spec.containers[0].env
+          content:
+            name: SPRING_CONFIG_ADDITIONAL_LOCATION
+            value: /config
+
+  - it: runs as the chart's service account by default
+    asserts:
+      - equal:
+          path: spec.template.spec.serviceAccountName
+          value: test-boing
+
+  - it: runs as the default service account when the chart does not create one
+    set:
+      serviceAccount.create: false
+    asserts:
+      - equal:
+          path: spec.template.spec.serviceAccountName
+          value: default
+
+  - it: passes optional pod settings through only when set
+    asserts:
+      - notExists:
+          path: spec.template.metadata.annotations
+      - notExists:
+          path: spec.template.spec.containers[0].livenessProbe
+      - notExists:
+          path: spec.template.spec.nodeSelector
+
+  - it: passes optional pod settings through
+    set:
+      podAnnotations:
+        example.com/note: hello
+      podLabels:
+        team: vampires
+      livenessProbe:
+        httpGet:
+          path: /
+          port: http
+      nodeSelector:
+        disk: ssd
+    asserts:
+      - equal:
+          path: spec.template.metadata.annotations
+          value:
+            example.com/note: hello
+      - equal:
+          path: spec.template.metadata.labels.team
+          value: vampires
+      - equal:
+          path: spec.template.spec.containers[0].livenessProbe.httpGet.path
+          value: /
+      - equal:
+          path: spec.template.spec.nodeSelector
+          value:
+            disk: ssd

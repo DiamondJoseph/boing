@@ -1,0 +1,41 @@
+suite: server config
+templates:
+  - configmap.yaml
+  - deployment.yaml
+release:
+  name: test
+tests:
+  - it: is named as the deployment's config volume expects
+    asserts:
+      - equal:
+          path: metadata.name
+          value: boing-server-config
+        template: configmap.yaml
+      - equal:
+          path: spec.template.spec.volumes[0].projected.sources[0].configMap.name
+          value: boing-server-config
+        template: deployment.yaml
+
+  - it: disables the API docs and Swagger UI by default
+    template: configmap.yaml
+    asserts:
+      - equal:
+          path: data["application.yaml"]
+          value: |-
+            springdoc:
+              api-docs:
+                enabled: false
+              swagger-ui:
+                enabled: false
+
+  - it: renders the server values as Spring config
+    template: configmap.yaml
+    set:
+      server:
+        logging:
+          level:
+            root: debug
+    asserts:
+      - matchRegex:
+          path: data["application.yaml"]
+          pattern: "logging:\n  level:\n    root: debug"

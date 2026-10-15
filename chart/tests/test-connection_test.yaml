@@ -1,0 +1,18 @@
+suite: connection test
+templates:
+  - tests/test-connection.yaml
+release:
+  name: test
+tests:
+  - it: is a Helm test hook that calls the service
+    asserts:
+      - equal:
+          path: metadata.annotations["helm.sh/hook"]
+          value: test
+      - equal:
+          path: spec.containers[0].args
+          value:
+            - test-boing:80
+      - equal:
+          path: spec.restartPolicy
+          value: Never
