@@ -44,6 +44,7 @@ label.checkbox {
 }
 
 input[type="text"],
+input[type="search"],
 textarea {
   display: block;
   width: 100%;
@@ -57,6 +58,7 @@ textarea {
 }
 
 input[type="text"]:focus,
+input[type="search"]:focus,
 textarea:focus {
   outline: 2px solid var(--leather);
   outline-offset: 1px;
@@ -121,4 +123,132 @@ button.secondary:hover {
 
 .error {
   color: #b00020;
+}
+
+a {
+  color: var(--leather);
+}
+
+a:hover {
+  color: var(--leather-dark);
+}
+
+table.games {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  background: var(--old-paper);
+  border: 1px solid var(--rule);
+}
+
+table.games th,
+table.games td {
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+
+table.games th {
+  background: var(--bone);
+}
+
+.vampire-description {
+  font-style: italic;
+}
+
+details.holdings {
+  margin: 0 0 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--old-paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+details.holdings summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.filter-bar input[type="search"] {
+  flex: 1 1 8rem;
+  width: auto;
+}
+
+.filter-bar label.checkbox {
+  margin: 0;
+  white-space: nowrap;
+}
+
+details.holdings > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+details.holdings > ul > li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--rule);
+}
+
+details.holdings > ul > li:last-child {
+  border-bottom: none;
+}
+
+details.holdings li p,
+details.holdings li ul {
+  margin: 0.25rem 0 0;
+}
+
+.count {
+  font-weight: normal;
+  color: var(--leather);
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0 0.4rem;
+  font-size: 0.8em;
+  color: var(--field);
+  background: var(--leather);
+  border-radius: 3px;
+}
+
+.holding-name.struck {
+  text-decoration: line-through;
+}
+
+.holding-name.bold {
+  font-weight: 700;
+}
+
+input[type="checkbox"].read-only {
+  margin: 0 0.5rem 0 0;
+  vertical-align: middle;
+  cursor: default;
+}
+
+/* Hidden on screen but read by screen readers and matched by the list filters */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Two holdings side by side, stacked on narrow screens */
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0 1rem;
+  align-items: start;
 }
