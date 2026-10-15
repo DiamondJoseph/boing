@@ -8,3 +8,6 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
     rm get_helm.sh
 
 RUN helm plugin install https://github.com/losisin/helm-values-schema-json.git --version 2.5.0 --verify=false
+
+# Keep the version in sync with .github/workflows/_test_chart.yml
+RUN helm plugin install https://github.com/helm-unittest/helm-unittest.git --version v1.0.3 --verify=false
