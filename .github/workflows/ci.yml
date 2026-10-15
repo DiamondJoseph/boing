@@ -15,29 +15,37 @@ jobs:
     with:
       java_version: ${{ matrix.java_version }}
 
-  test:
+  test_java:
     strategy:
       matrix:
         # Current LTS release + non-LTS releases since
         java_version: ["25", "26"]
-    uses: ./.github/workflows/_test.yml
+    uses: ./.github/workflows/_test_java.yml
     with:
       java_version: ${{ matrix.java_version }}
+
+  test_client:
+    uses: ./.github/workflows/_test_client.yml
+
+  test_chart:
+    uses: ./.github/workflows/_test_chart.yml
 
   jar_build:
     uses: ./.github/workflows/_jar.yml
     needs:
     - lint
-    - test
+    - test_java
 
   container_build:
     uses: ./.github/workflows/_container.yml
     needs:
     - lint
-    - test
+    - test_java
+    - test_client
 
   chart_build:
     uses: ./.github/workflows/_chart.yml
     needs:
     - lint
-    - test
+    - test_chart
+    - container_build

@@ -12,6 +12,11 @@
 		"ghcr.io/devcontainers/features/docker-in-docker:4": {
 			"moby": false
 		},
+		// kubectl and minikube for deploying the Helm chart locally. Helm itself comes from the
+		// Dockerfile, so that its plugins can be installed at image build time.
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"helm": "none"
+		},
 		"ghcr.io/prulloac/devcontainer-features/pre-commit:1": {},
 		"ghcr.io/devcontainers/features/node:2": {
 			"version": "24"  // Use latest LTS, keep in sync with Dockerfile
@@ -26,7 +31,17 @@
             "type": "bind"
         }
     ],
-	"postCreateCommand": "pre-commit install --install-hooks",
+	// The server serves the built client from client/dist
+	"forwardPorts": [8080],
+	"portsAttributes": {
+		"8080": {
+			"label": "Boing server"
+		}
+	},
+	"postCreateCommand": {
+		"pre-commit": "pre-commit install --install-hooks",
+		"client": "cd client && npm ci && npm run build"
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [

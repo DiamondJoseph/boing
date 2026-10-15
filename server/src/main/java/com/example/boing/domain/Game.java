@@ -31,10 +31,12 @@ public class Game extends Persistable {
       throw new IllegalArgumentException("Should start with at least 3 people");
     }
     this.vampire = vampire;
-    this.people = people;
-    this.resources = resources;
-    this.skills = skills;
+    // Copy, so the game can be added to even when given unmodifiable lists
+    this.people = new ArrayList<>(people);
+    this.resources = new ArrayList<>(resources);
+    this.skills = new ArrayList<>(skills);
     this.memories = new ArrayList<>();
+    this.diaries = new ArrayList<>();
     this.random = new Random(System.currentTimeMillis());
   }
 

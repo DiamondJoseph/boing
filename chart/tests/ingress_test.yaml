@@ -1,0 +1,61 @@
+suite: ingress
+templates:
+  - ingress.yaml
+release:
+  name: test
+tests:
+  - it: is not created by default
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: routes each host and path to the service
+    set:
+      ingress.enabled: true
+      ingress.className: nginx
+      ingress.hosts:
+        - host: boing.example.com
+          paths:
+            - path: /
+              pathType: Prefix
+            - path: /api
+    asserts:
+      - equal:
+          path: spec.ingressClassName
+          value: nginx
+      - equal:
+          path: spec.rules
+          value:
+            - host: boing.example.com
+              http:
+                paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                      service:
+                        name: test-boing
+                        port:
+                          number: 80
+                  - path: /api
+                    backend:
+                      service:
+                        name: test-boing
+                        port:
+                          number: 80
+      - notExists:
+          path: spec.tls
+
+  - it: adds TLS when configured
+    set:
+      ingress.enabled: true
+      ingress.tls:
+        - secretName: boing-tls
+          hosts:
+            - boing.example.com
+    asserts:
+      - equal:
+          path: spec.tls
+          value:
+            - secretName: boing-tls
+              hosts:
+                - boing.example.com

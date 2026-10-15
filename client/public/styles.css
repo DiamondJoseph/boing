@@ -252,3 +252,10 @@ input[type="checkbox"].read-only {
   gap: 0 1rem;
   align-items: start;
 }
+
+.notice {
+  padding: 0.5rem 1rem;
+  background: var(--field);
+  border: 1px dashed var(--leather);
+  border-radius: 4px;
+}

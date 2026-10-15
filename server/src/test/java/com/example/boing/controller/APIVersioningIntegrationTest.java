@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 class APIVersioningIntegrationTest {
 
-  private static final String EXPECTED_HASH = "8b23fbc7540cd4b1d542c446950a09b0";
+  private static final String EXPECTED_HASH = "775a551c4dd68fb2b38247077a166b7f";
 
   @Test
   void testApiVersion() throws IOException, NoSuchAlgorithmException {

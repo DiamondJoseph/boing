@@ -7,8 +7,14 @@ jobs:
   lint:
     uses: ./.github/workflows/_lint.yml
 
-  test:
-    uses: ./.github/workflows/_test.yml
+  test_java:
+    uses: ./.github/workflows/_test_java.yml
+
+  test_client:
+    uses: ./.github/workflows/_test_client.yml
+
+  test_chart:
+    uses: ./.github/workflows/_test_chart.yml
 
   publish_jar:
     permissions:
@@ -16,7 +22,7 @@ jobs:
     uses: ./.github/workflows/_jar.yml
     needs:
     - lint
-    - test
+    - test_java
     with:
       publish: true
 
@@ -26,6 +32,7 @@ jobs:
     uses: ./.github/workflows/_container.yml
     needs:
     - publish_jar
+    - test_client
     with:
       publish: true
 
@@ -35,5 +42,6 @@ jobs:
     uses: ./.github/workflows/_chart.yml
     needs:
     - publish_container
+    - test_chart
     with:
       publish: true
