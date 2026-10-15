@@ -5,7 +5,13 @@
     "packages": {
         ".": {
             "skip-changelog": false,
+            "release-type": "simple"
+        },
+        "server": {
             "release-type": "maven"
+        },
+        "client": {
+            "release-type": "node"
         },
         "chart": {
             "release-type": "helm",
@@ -24,6 +30,8 @@
             "groupName": "all",
             "components": [
                 ".",
+                "server",
+                "client",
                 "chart"
             ]
         }

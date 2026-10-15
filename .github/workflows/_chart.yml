@@ -14,9 +14,10 @@ jobs:
 
     - uses: Azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310  # v5
 
-    - run: |
-        helm dependencies update chart
-        helm package chart -d /tmp/
+    - working-directory: chart
+      run: |
+        helm dependencies update .
+        helm package . -d /tmp/
 
     - uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v5
       with:

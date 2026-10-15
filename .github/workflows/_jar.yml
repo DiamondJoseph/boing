@@ -25,9 +25,11 @@ jobs:
           distribution: ${{ inputs.java_distribution }}
           cache: 'maven'
 
-      - run: mvn install -DskipTests -Dspotless.check.skip=true --batch-mode
+      - working-directory: server
+        run: mvn install -DskipTests -Dspotless.check.skip=true --batch-mode
 
       - if: inputs.publish
+        working-directory: server
         run: mvn deploy --batch-mode
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
