@@ -1,0 +1,124 @@
+:root {
+  --bone: #d9cdb4;
+  --old-paper: #efe2c2;
+  --ink: #3b2f22;
+  --rule: #b8a47e;
+  --field: #f7efdc;
+  --leather: #6b4f33;
+  --leather-dark: #4a3522;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 48rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  line-height: 1.5;
+  /* A body background also fills the whole viewport, beyond the max-width */
+  background: var(--bone);
+  color: var(--ink);
+}
+
+form {
+  padding: 1rem;
+  background: var(--old-paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgb(59 47 34 / 25%);
+}
+
+fieldset {
+  margin: 0 0 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+label.checkbox {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+input[type="text"],
+textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--field);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: 2px solid var(--leather);
+  outline-offset: 1px;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--leather);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.5rem 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.row label:not(.checkbox) {
+  flex: 1 1 12rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  padding: 0.35rem 0.9rem;
+  font: inherit;
+  color: var(--field);
+  background: var(--leather);
+  border: 1px solid var(--leather-dark);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--leather-dark);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--leather-dark);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+button.secondary {
+  color: var(--leather-dark);
+  background: var(--field);
+  border-color: var(--rule);
+}
+
+button.secondary:hover {
+  background: var(--old-paper);
+  border-color: var(--leather);
+}
+
+.error {
+  color: #b00020;
+}
