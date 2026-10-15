@@ -1,0 +1,17 @@
+on:
+  workflow_call:
+
+jobs:
+  helm_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+
+      - uses: Azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310  # v5
+
+      # Keep the plugin version in sync with .devcontainer/Dockerfile
+      - run: helm plugin install https://github.com/helm-unittest/helm-unittest.git --version v1.0.3 --verify=false
+
+      - run: |
+          helm lint chart
+          helm unittest chart
